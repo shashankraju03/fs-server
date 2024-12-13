@@ -4,7 +4,7 @@ import { FileReaderService } from './file-reader.service';
 @Controller('file-reader')
 export class FileReaderController {
   constructor(private readonly fileReaderService: FileReaderService) {}
-  @Get(':lines')
+  @Get()
   getLast10lines(@Query() query: { lines: number; bufferSizeInBytes: number }) {
     return this.fileReaderService.getLast10lines(
       query.lines,
