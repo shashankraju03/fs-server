@@ -1,10 +1,8 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { FilerWatcherService } from './filer-watcher/filer-watcher.service';
+import { SocketGateway } from './socket-gateway/socket-gateway.gateway';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  providers: [SocketGateway, FilerWatcherService],
 })
 export class AppModule {}
