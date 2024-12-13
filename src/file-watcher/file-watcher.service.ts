@@ -4,7 +4,7 @@ import * as path from 'path';
 import { SocketGateway } from 'src/socket-gateway/socket-gateway.gateway';
 
 @Injectable()
-export class FilerWatcherService implements OnModuleInit, OnModuleDestroy {
+export class FileWatcherService implements OnModuleInit, OnModuleDestroy {
   constructor(private readonly socketGateway: SocketGateway) {}
 
   private eofPointer: number = 0;
