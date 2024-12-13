@@ -7,7 +7,6 @@ import { SocketGateway } from 'src/socket-gateway/socket-gateway.gateway';
 export class FileWatcherService implements OnModuleInit, OnModuleDestroy {
   constructor(private readonly socketGateway: SocketGateway) {}
 
-  private eofPointer: number = 0;
   private filePath = path.join(__dirname, '../../files/example.txt');
 
   onModuleInit() {
@@ -28,7 +27,7 @@ export class FileWatcherService implements OnModuleInit, OnModuleDestroy {
 
     fs.watchFile(this.filePath, { interval: 500 }, (curr, prev) => {
       console.log('File changed. Reading new content...');
-      this.readFileChunk(curr, prev);
+      this.readNewFileChunk(curr, prev);
     });
   }
 
@@ -37,8 +36,7 @@ export class FileWatcherService implements OnModuleInit, OnModuleDestroy {
     console.log('Stopped watching file for changes.');
   }
 
-  private readFileChunk(curr: fs.Stats, prev: fs.Stats) {
-    // Ensure there's new data to read
+  private readNewFileChunk(curr: fs.Stats, prev: fs.Stats) {
     if (prev.size >= curr.size) {
       console.log('No new data to read.');
       return;
